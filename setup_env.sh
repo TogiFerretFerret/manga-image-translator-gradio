@@ -1,13 +1,16 @@
 #!/bin/bash
 # setup_env.sh - Automates installation of manga-image-translator-gradio in molab/Colab containers
 
+# Change directory to the script's directory to resolve relative paths correctly
+cd "$(dirname "$0")"
+
 echo "============================================================"
 echo " Setup Manga Image Translator (Gradio Edition) in Molab"
 echo "============================================================"
 
 # 1. Create a virtual environment using Python 3.11 (safe version for all wheels)
 echo "[1/5] Creating Python 3.11 virtual environment..."
-uv venv --python 3.11 .venv
+uv venv --no-project --python 3.11 .venv
 source .venv/bin/activate
 
 # 2. Temporarily comment out the malformed rusty-manga-image-translator package
@@ -16,7 +19,7 @@ sed -i 's/^rusty-manga-image-translator/# &/' requirements.txt
 
 # 3. Use uv to install the 149 standard packages at lightning speed
 echo "[3/5] Installing dependencies with uv..."
-uv pip install -r requirements.txt
+uv pip install --no-project -r requirements.txt
 
 # 4. Use standard pip to install the malformed rusty-manga-image-translator package
 echo "[4/5] Installing rusty-manga-image-translator with standard pip..."
@@ -24,7 +27,7 @@ echo "[4/5] Installing rusty-manga-image-translator with standard pip..."
 
 # 5. Install gradio
 echo "[5/5] Installing gradio..."
-uv pip install gradio
+uv pip install --no-project gradio
 
 # 6. Restore requirements.txt
 sed -i 's/^# \(rusty-manga-image-translator\)/\1/' requirements.txt
