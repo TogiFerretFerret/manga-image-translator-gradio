@@ -94,10 +94,16 @@ def translate_wrapper(image, translator_name, detector_name, target_lang_name, s
     if image is None:
         return None
         
-    # Save input image to temp file
-    temp_dir = tempfile.gettempdir()
-    input_path = os.path.join(temp_dir, "input_gradio.png")
-    image.save(input_path, format="PNG")
+    # Handle filepath strings, dicts, or PIL Images
+    if isinstance(image, str):
+        input_path = image
+    elif isinstance(image, dict) and "path" in image:
+        input_path = image["path"]
+    else:
+        # Save input PIL image to temp file
+        temp_dir = tempfile.gettempdir()
+        input_path = os.path.join(temp_dir, "input_gradio.png")
+        image.save(input_path, format="PNG")
     
     try:
         loop = asyncio.new_event_loop()
