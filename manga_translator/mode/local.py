@@ -116,6 +116,21 @@ class MangaTranslatorLocal(MangaTranslator):
             config = Config(**config_dict)
         else:
             config = Config()
+            if 'translator' in params:
+                config.translator.translator = params['translator']
+            if 'target_lang' in params:
+                config.translator.target_lang = params['target_lang']
+            if 'detector' in params:
+                config.detector.detector = params['detector']
+            if 'size' in params:
+                size_map = {'S': 1024, 'M': 1536, 'L': 2048, 'X': 2560}
+                val = params['size']
+                if val in size_map:
+                    config.detector.detection_size = size_map[val]
+                elif isinstance(val, int):
+                    config.detector.detection_size = val
+            if 'direction' in params:
+                config.render.direction = params['direction']
         # Handle format
         file_ext = params.get('format')
         if params.get('save_quality', 100) < 100:
