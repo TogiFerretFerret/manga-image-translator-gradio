@@ -19,6 +19,25 @@ This project is v2 of [Qiú wén zhuǎn yì zhì](https://github.com/PatchyVideo
 
 **Note: This project is still in the early stages of development and has many shortcomings. We need your help to improve it!**
 
+> [!TIP]
+> **Persistent Cloud Storage on Molab / Colab**
+> To avoid losing your translated files and downloaded models when the ephemeral container restarts, use `fsspec` or `obstore` to sync/mount your cloud storage bucket (e.g. AWS S3, Cloudflare R2, Google Cloud Storage):
+> ```python
+> # 1. Using fsspec to copy files
+> import fsspec
+> fs = fsspec.filesystem("s3", key="YOUR_ACCESS_KEY", secret="YOUR_SECRET_KEY")
+> fs.put("result/final.png", "s3://my-manga-bucket/final.png")
+>
+> # 2. Using obstore (fast Rust-based object store bindings)
+> import obstore as obs
+> store = obs.store.S3(
+>     bucket="my-manga-bucket",
+>     region="us-east-1",
+>     access_key_id="YOUR_ACCESS_KEY",
+>     secret_access_key="YOUR_SECRET_KEY"
+> )
+> ```
+
 
 ## 📂 Directory
 
