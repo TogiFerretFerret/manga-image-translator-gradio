@@ -5,9 +5,9 @@ echo "============================================================"
 echo " Setup Manga Image Translator (Gradio Edition) in Molab"
 echo "============================================================"
 
-# 1. Create a virtual environment using Python 3.12 (safe version for all wheels)
-echo "[1/5] Creating Python 3.12 virtual environment..."
-uv venv --python 3.12 .venv
+# 1. Create a virtual environment using Python 3.11 (safe version for all wheels)
+echo "[1/5] Creating Python 3.11 virtual environment..."
+uv venv --python 3.11 .venv
 source .venv/bin/activate
 
 # 2. Temporarily comment out the malformed rusty-manga-image-translator package
