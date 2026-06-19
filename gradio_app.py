@@ -14,8 +14,7 @@ from manga_translator.utils import init_logging
 
 init_logging()
 
-# Supported translators
-TRANSLATORS_LIST = ["gpt3.5", "offline", "none", "google", "deepl", "youdao", "baidu", "papago"]
+TRANSLATORS_LIST = ["google", "gpt3.5", "none", "deepl", "youdao", "baidu", "papago"]
 
 # Supported detectors
 DETECTORS_LIST = ["ctd", "default"]
@@ -127,7 +126,7 @@ with gr.Blocks(title="Manga Image Translator (Molab Edition)") as demo:
             input_img = gr.Image(type="pil", label="Upload Manga Page")
             
             with gr.Row():
-                translator = gr.Dropdown(choices=TRANSLATORS_LIST, value="offline", label="Translator Engine")
+                translator = gr.Dropdown(choices=TRANSLATORS_LIST, value="google", label="Translator Engine")
                 detector = gr.Dropdown(choices=DETECTORS_LIST, value="ctd", label="Text Detector")
                 
             with gr.Row():

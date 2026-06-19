@@ -16,13 +16,12 @@ source .venv/bin/activate
 # 2. Temporarily comment out the malformed rusty-manga-image-translator package
 echo "[2/5] Preparing requirements.txt..."
 sed -i 's/^rusty-manga-image-translator/# &/' requirements.txt
-echo source .venv/bin/activate
-echo uv pip --python /marimo/manga-image-translator-gradio/.venv/bin/python install -r requirements.txt
-echo pip --python /marimo/manga-image-translator-gradio/.venv/bin/python install --extra-index-url https://frederik-uni.github.io/manga-image-translator-rust/python/wheels/simple/ rusty-manga-image-translator
-echo uv pip install --python /marimo/manga-image-translator-gradio/.venv/bin/python gradio
+ 
 echo "============================================================"
 echo " SETUP SUCCESSFUL!"
 echo "============================================================"
 echo "To start the Gradio server, run:"
 echo "  PYTHONPATH= .venv/bin/python gradio_app.py"
 echo "============================================================"
+
+

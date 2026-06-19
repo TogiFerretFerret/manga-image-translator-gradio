@@ -315,6 +315,9 @@ class OfflineTranslator(CommonTranslator, ModelWrapper):
     async def _infer(self, from_lang: str, to_lang: str, queries: List[str]) -> List[str]:
         pass
 
+    async def download(self, force=False):
+        raise RuntimeError("Offline translator models (like JParaCrawl/Sugoi/M2M100) are disabled and cannot be downloaded on this server. Please use an online translator engine like 'google' or 'gpt3.5'.")
+
     async def load(self, from_lang: str, to_lang: str, device: str):
         return await super().load(device, *self.parse_language_codes(from_lang, to_lang))
 
